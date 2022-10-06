@@ -10,6 +10,9 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-firebase/app": "^15.7.0",
+    "@react-native-firebase/auth": "^15.7.0",
+    "@react-native-firebase/firestore": "^15.7.0",
     "react": "18.1.0",
     "react-native": "0.70.2",
     "react-native-geolocation-service": "5.2.0",

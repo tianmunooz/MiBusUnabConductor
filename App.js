@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {Platform, SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {check, request, PERMISSIONS, RESULTS} from 'react-native-permissions';
-import Geolocation from 'react-native-geolocation-service'; // 👈
+import Geolocation from 'react-native-geolocation-service'; //
+import firestore from '@react-native-firebase/firestore';
 
 const App = () => {
   const [location, setLocation] = useState(null); // 👈
@@ -54,6 +55,17 @@ const App = () => {
     );
   }, []);
 
+  firestore()
+    .collection('coordinates')
+    .doc('m8weiY0LuyDEGj5Hmzhr')
+    .update({
+      lat: location.latitude,
+      long: location.longitude,
+    })
+    .then(() => {
+      console.log('Coordinates update!');
+    });
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" />
@@ -70,7 +82,7 @@ const App = () => {
           showsUserLocation={true}
         />
       )}
-    </SafeAreaView>
+    </SafeAreaView> // 👈
   );
 };
 
